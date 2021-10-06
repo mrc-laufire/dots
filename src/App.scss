@@ -1,6 +1,14 @@
+* {
+	overflow: hidden;
+}
 .App {
 	text-align: center;
 	width: 100vw;
 	height: 100vh;
 	background-color: lightgrey;
+
+	.rectangle {
+		position: absolute;
+		background-color: red;
+	}
 }
