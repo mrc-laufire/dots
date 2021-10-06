@@ -2,11 +2,14 @@ import * as random from '@laufire/utils/random';
 import RectangleManager from './rectangleManager';
 import config from '../core/config';
 import PositionService from './positionService';
+import context from '../core/context';
 
 describe('RectangleManager', () => {
 	const {
 		setRectangle,
 		createRectangle,
+		detectCollision,
+		isOverLapping,
 	} = RectangleManager;
 	const returnValue = Symbol('returnValue');
 
@@ -46,5 +49,26 @@ describe('RectangleManager', () => {
 
 		expect(result).toEqual([...state.rectangle, returnValue]);
 		expect(RectangleManager.createRectangle).toHaveBeenCalledWith(config);
+	});
+
+	test('detectCollision', () => {
+		jest.spyOn(RectangleManager, 'isOverLapping')
+			.mockReturnValue(returnValue);
+
+		const object = Symbol('object');
+		const result = detectCollision(context, object);
+
+		expect(result).toEqual(returnValue);
+		expect(RectangleManager.isOverLapping)
+			.toHaveBeenCalledWith(context, object);
+	});
+
+	test('isOverLapping', () => {
+		const recOne = Symbol('recOne');
+		const recTwo = Symbol('recTwo');
+
+		const result = isOverLapping(recOne, recTwo);
+
+		expect(result).toEqual(false);
 	});
 });
