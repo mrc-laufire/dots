@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import App from './App';
 import context from './core/context';
@@ -9,5 +9,15 @@ describe('App', () => {
 		const someText = screen.getByText(context.config.message);
 
 		expect(someText).toBeInTheDocument();
+	});
+
+	test('onClick fireEvent', () => {
+		jest.spyOn(context.actions, 'setRectangle').mockReturnValue();
+
+		const component = render(App(context)).getByRole('App');
+
+		fireEvent.click(component);
+
+		expect(context.actions.setRectangle).toHaveBeenCalledWith();
 	});
 });
