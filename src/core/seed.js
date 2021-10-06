@@ -1,3 +1,5 @@
-const seed = {};
+const seed = {
+	rectangle: [],
+};
 
 export default seed;
