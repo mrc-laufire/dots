@@ -1,6 +1,7 @@
 import * as random from '@laufire/utils/random';
 import RectangleManager from './rectangleManager';
 import config from '../core/config';
+import PositionService from './positionService';
 
 describe('RectangleManager', () => {
 	const {
@@ -10,26 +11,27 @@ describe('RectangleManager', () => {
 	const returnValue = Symbol('returnValue');
 
 	test('createRectangle', () => {
+		const { idLength, width, height } = config;
 		const id = Symbol('id');
 		const x = Symbol('x');
 		const y = Symbol('y');
 		const expected = {
-			id: id,
-			x: x,
-			y: y,
-			width: config.width,
-			height: config.height,
+			id,
+			x,
+			y,
+			width,
+			height,
 		};
 
 		jest.spyOn(random, 'rndString').mockReturnValue(id);
-		jest.spyOn(random, 'rndBetween').mockReturnValueOnce(x)
+		jest.spyOn(PositionService, 'getRandomPosition').mockReturnValueOnce(x)
 			.mockReturnValueOnce(y);
 
 		const result = createRectangle(config);
 
-		expect(random.rndString).toHaveBeenCalledWith(config.idLength);
-		expect(random.rndBetween).toHaveBeenCalledWith();
-		expect(random.rndBetween).toHaveBeenCalledWith();
+		expect(random.rndString).toHaveBeenCalledWith(idLength);
+		expect(PositionService.getRandomPosition).toHaveBeenCalledWith(width);
+		expect(PositionService.getRandomPosition).toHaveBeenCalledWith(height);
 		expect(result).toMatchObject(expected);
 	});
 
