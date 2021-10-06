@@ -1,11 +1,14 @@
 import { React } from 'react';
 import './App.scss';
+import Rectangle from './components/rectangle';
 
-const App = ({ config, actions }) =>
+const App = ({ state, actions }) =>
 	<div
 		role="App"
 		className="App"
 		onClick={ () => actions.setRectangle() }
-	>{ config.message }</div>;
+	>
+		{ state.rectangle.map(Rectangle) }
+	</div>;
 
 export default App;
