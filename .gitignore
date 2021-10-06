@@ -1,0 +1,19 @@
+# Ignores
+## General
+.*
+*.tgz
+
+## Stack
+node_modules
+coverage
+
+# Excludes
+## General
+!.git*
+!.npmignore
+!.vscode/launch.json
+
+## Dev
+!.editorconfig
+!.eslint*
+dist
