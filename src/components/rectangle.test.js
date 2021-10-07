@@ -5,9 +5,12 @@ import Rectangle from './rectangle';
 
 describe('Rectangle', () => {
 	const data = RectangleManager.createRectangle(config);
+	const context = {
+		data,
+	};
 
 	test('Rectangle render', () => {
-		const component = render(Rectangle(data)).getByRole('rectangle');
+		const component = render(Rectangle(context)).getByRole('rectangle');
 
 		expect(component).toBeInTheDocument();
 		expect(component).toHaveClass('rectangle');

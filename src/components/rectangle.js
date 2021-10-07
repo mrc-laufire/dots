@@ -1,7 +1,7 @@
 import { React } from 'react';
 
-const Rectangle = (data) => {
-	const { id, x, y, width, height } = data;
+const Rectangle = (context) => {
+	const { data: { id, x, y, width, height }} = context;
 
 	const getStyle = {
 		left: `${ y }%`,

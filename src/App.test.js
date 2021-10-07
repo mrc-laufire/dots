@@ -2,35 +2,47 @@ import { render, fireEvent } from '@testing-library/react';
 import { React } from 'react';
 import App from './App';
 import * as Rectangle from './components/rectangle';
+import { range } from '@laufire/utils/collection';
 
 describe('App', () => {
-	const state = {
-		rectangles: [],
+	const rectangles = range().map((dummy, id) => ({
+		id: id,
+		data: Symbol('data'),
+	}));
+
+	const context = {
+		state: {
+			rectangles,
+		},
+		actions: {
+			setRectangle: jest.fn(),
+		},
 	};
-	const actions = {
-		setRectangle: jest.fn(),
-	};
 
-	test('renders Rectangle', () => {
-		const returnValue = <div role="rectangle"/>;
+	test('renders Rectangles', () => {
+		jest.spyOn(Rectangle, 'default')
+			.mockImplementation(({ data: { id }}) =>
+				<div key={ id } role="rectangle"/>);
 
-		jest.spyOn(Rectangle, 'default').mockReturnValue(returnValue);
-		jest.spyOn(state.rectangles, 'map').mockReturnValue(returnValue);
-
-		const { getByRole } = render(App({ state, actions }));
+		const { getByRole, getAllByRole } = render(App(context));
 		const component = getByRole('App');
 
 		expect(component).toBeInTheDocument();
-		expect(getByRole('rectangle')).toBeInTheDocument();
-		expect(state.rectangles.map).toHaveBeenCalledWith(Rectangle.default);
-	});
-	test('onClick fireEvent', () => {
-		jest.spyOn(actions, 'setRectangle').mockReturnValue();
+		expect(getAllByRole('rectangle').length).toEqual(rectangles.length);
 
-		const component = render(App({ state, actions })).getByRole('App');
+		context.state.rectangles.forEach((rectangle) => {
+			expect(Rectangle.default)
+				.toHaveBeenCalledWith({ ...context, data: rectangle });
+		});
+	});
+
+	test('onClick fireEvent', () => {
+		jest.spyOn(context.actions, 'setRectangle').mockReturnValue();
+
+		const component = render(App(context)).getByRole('App');
 
 		fireEvent.click(component);
 
-		expect(actions.setRectangle).toHaveBeenCalledWith();
+		expect(context.actions.setRectangle).toHaveBeenCalledWith();
 	});
 });
