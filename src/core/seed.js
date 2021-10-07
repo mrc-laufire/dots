@@ -1,5 +1,5 @@
 const seed = {
-	rectangle: [],
+	rectangles: [],
 };
 
 export default seed;

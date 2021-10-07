@@ -5,24 +5,24 @@ import * as Rectangle from './components/rectangle';
 
 describe('App', () => {
 	const state = {
-		rectangle: [],
+		rectangles: [],
 	};
 	const actions = {
 		setRectangle: jest.fn(),
 	};
 
-	test('renders rectangle', () => {
+	test('renders Rectangle', () => {
 		const returnValue = <div role="rectangle"/>;
 
 		jest.spyOn(Rectangle, 'default').mockReturnValue(returnValue);
-		jest.spyOn(state.rectangle, 'map').mockReturnValue(returnValue);
+		jest.spyOn(state.rectangles, 'map').mockReturnValue(returnValue);
 
 		const { getByRole } = render(App({ state, actions }));
 		const component = getByRole('App');
 
 		expect(component).toBeInTheDocument();
 		expect(getByRole('rectangle')).toBeInTheDocument();
-		expect(state.rectangle.map).toHaveBeenCalledWith(Rectangle.default);
+		expect(state.rectangles.map).toHaveBeenCalledWith(Rectangle.default);
 	});
 	test('onClick fireEvent', () => {
 		jest.spyOn(actions, 'setRectangle').mockReturnValue();

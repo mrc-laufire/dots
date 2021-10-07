@@ -8,7 +8,7 @@ const App = ({ state, actions }) =>
 		className="App"
 		onClick={ () => actions.setRectangle() }
 	>
-		{ state.rectangle.map(Rectangle) }
+		{ state.rectangles.map(Rectangle) }
 	</div>;
 
 export default App;

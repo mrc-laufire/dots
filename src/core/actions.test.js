@@ -11,7 +11,7 @@ describe('actions', () => {
 
 		const result = actions.setRectangle(context);
 
-		expect(result).toMatchObject({ rectangle: returnValue });
+		expect(result).toMatchObject({ rectangles: returnValue });
 		expect(RectangleManager.setRectangle).toHaveBeenCalledWith(context);
 	});
 });

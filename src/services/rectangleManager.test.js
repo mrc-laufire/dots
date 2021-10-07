@@ -43,11 +43,11 @@ describe('RectangleManager', () => {
 			.mockReturnValue(returnValue);
 		const rectangle = Symbol('rectangle');
 		const state = {
-			rectangle: [{ rectangle }],
+			rectangles: [{ rectangle }],
 		};
 		const result = setRectangle({ state, config });
 
-		expect(result).toEqual([...state.rectangle, returnValue]);
+		expect(result).toEqual([...state.rectangles, returnValue]);
 		expect(RectangleManager.createRectangle).toHaveBeenCalledWith(config);
 	});
 

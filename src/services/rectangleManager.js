@@ -10,7 +10,7 @@ const RectangleManager = {
 		height: config.height,
 	}),
 
-	setRectangle: ({ state, config }) => [...state.rectangle, RectangleManager
+	setRectangle: ({ state, config }) => [...state.rectangles, RectangleManager
 		.createRectangle(config)],
 
 	detectCollision: (context, object) =>
