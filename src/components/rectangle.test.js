@@ -21,4 +21,23 @@ describe('Rectangle', () => {
 			height: `${ data.height }%`,
 		});
 	});
+
+	describe('background color', () => {
+		const expectations = [
+			[true, 'green'],
+			[false, 'red'],
+		];
+
+		test.each(expectations)('isCollided is %p background color is %p',
+			(hasCollided, color) => {
+				jest.spyOn(RectangleManager, 'detectCollision')
+					.mockReturnValue(hasCollided);
+				const component = render(Rectangle(context))
+					.getByRole('rectangle');
+
+				expect(component).toHaveStyle({
+					background: color,
+				});
+			});
+	});
 });
