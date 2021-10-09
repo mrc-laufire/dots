@@ -17,8 +17,8 @@ describe('Rectangle', () => {
 		expect(component).toHaveStyle({
 			left: `${ data.y }%`,
 			top: `${ data.x }%`,
-			width: `${ data.width }%`,
-			height: `${ data.height }%`,
+			width: `${ data.width }vw`,
+			height: `${ data.height }vw`,
 		});
 	});
 
