@@ -1,10 +1,11 @@
 import { render } from '@testing-library/react';
 import config from '../core/config';
+import seed from '../core/seed';
 import RectangleManager from '../services/rectangleManager';
 import Rectangle from './rectangle';
 
 describe('Rectangle', () => {
-	const data = RectangleManager.createRectangle(config);
+	const data = RectangleManager.createRectangle(seed, config);
 	const context = {
 		data,
 	};
@@ -15,8 +16,8 @@ describe('Rectangle', () => {
 		expect(component).toBeInTheDocument();
 		expect(component).toHaveClass('rectangle');
 		expect(component).toHaveStyle({
-			left: `${ data.x }%`,
-			top: `${ data.y }%`,
+			left: `${ data.x }px`,
+			top: `${ data.y }px`,
 			width: `${ data.width }vw`,
 			height: `${ data.height }vw`,
 		});
