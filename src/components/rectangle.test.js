@@ -11,6 +11,8 @@ describe('Rectangle', () => {
 	};
 
 	test('Rectangle render', () => {
+		jest.spyOn(RectangleManager, 'detectCollision').mockReturnValue();
+
 		const component = render(Rectangle(context)).getByRole('rectangle');
 
 		expect(component).toBeInTheDocument();

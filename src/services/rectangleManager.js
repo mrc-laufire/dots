@@ -13,11 +13,11 @@ const RectangleManager = {
 	setRectangle: ({ state, config }) => [...state.rectangles, RectangleManager
 		.createRectangle(state, config)],
 
-	detectCollision: (context, object) =>
-		RectangleManager.isOverLapping(context, object),
+	detectCollision: (context) =>
+		RectangleManager.isOverLapping(context.state.rectangles, context.data),
 
 	// eslint-disable-next-line no-unused-vars
-	isOverLapping: (recOne, recTwo) => false,
+	isOverLapping: (rectangles, recOne) => false,
 };
 
 export default RectangleManager;

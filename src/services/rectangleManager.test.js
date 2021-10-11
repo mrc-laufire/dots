@@ -1,7 +1,6 @@
 import * as random from '@laufire/utils/random';
 import RectangleManager from './rectangleManager';
 import config from '../core/config';
-import context from '../core/context';
 
 describe('RectangleManager', () => {
 	const {
@@ -54,19 +53,23 @@ describe('RectangleManager', () => {
 		jest.spyOn(RectangleManager, 'isOverLapping')
 			.mockReturnValue(returnValue);
 
-		const object = Symbol('object');
-		const result = detectCollision(context, object);
+		const rectangles = Symbol('rectangles');
+		const state = { rectangles };
+		const data = Symbol('data');
+		const context = { state, data };
+
+		const result = detectCollision(context);
 
 		expect(result).toEqual(returnValue);
 		expect(RectangleManager.isOverLapping)
-			.toHaveBeenCalledWith(context, object);
+			.toHaveBeenCalledWith(state.rectangles, data);
 	});
 
 	test('isOverLapping', () => {
+		const rectangles = Symbol('rectangles');
 		const recOne = Symbol('recOne');
-		const recTwo = Symbol('recTwo');
 
-		const result = isOverLapping(recOne, recTwo);
+		const result = isOverLapping(rectangles, recOne);
 
 		expect(result).toEqual(false);
 	});
