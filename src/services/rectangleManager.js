@@ -17,7 +17,7 @@ const RectangleManager = {
 		RectangleManager.isOverLapping(context.state.rectangles, context.data),
 
 	// eslint-disable-next-line no-unused-vars
-	isOverLapping: (rectangles, recOne) => false,
+	isOverLapping: (recOne, recTwo) => false,
 };
 
 export default RectangleManager;

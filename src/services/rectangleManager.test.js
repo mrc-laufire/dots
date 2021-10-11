@@ -66,10 +66,10 @@ describe('RectangleManager', () => {
 	});
 
 	test('isOverLapping', () => {
-		const rectangles = Symbol('rectangles');
 		const recOne = Symbol('recOne');
+		const recTwo = Symbol('recTwo');
 
-		const result = isOverLapping(rectangles, recOne);
+		const result = isOverLapping(recOne, recTwo);
 
 		expect(result).toEqual(false);
 	});
