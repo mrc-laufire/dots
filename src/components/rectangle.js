@@ -8,8 +8,8 @@ const Rectangle = (context) => {
 	const getStyle = {
 		left: `${ x }px`,
 		top: `${ y }px`,
-		width: `${ width }vw`,
-		height: `${ height }vw`,
+		width: `${ width }px`,
+		height: `${ height }px`,
 		background: color,
 	};
 

@@ -20,8 +20,8 @@ describe('Rectangle', () => {
 		expect(component).toHaveStyle({
 			left: `${ data.x }px`,
 			top: `${ data.y }px`,
-			width: `${ data.width }vw`,
-			height: `${ data.height }vw`,
+			width: `${ data.width }px`,
+			height: `${ data.height }px`,
 		});
 	});
 
