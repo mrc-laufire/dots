@@ -1,7 +1,6 @@
 import * as random from '@laufire/utils/random';
 import RectangleManager from './rectangleManager';
 import config from '../core/config';
-import PositionService from './positionService';
 import context from '../core/context';
 
 describe('RectangleManager', () => {
@@ -18,6 +17,9 @@ describe('RectangleManager', () => {
 		const id = Symbol('id');
 		const x = Symbol('x');
 		const y = Symbol('y');
+		const state = {
+			position: { x, y },
+		};
 		const expected = {
 			id,
 			x,
@@ -27,14 +29,10 @@ describe('RectangleManager', () => {
 		};
 
 		jest.spyOn(random, 'rndString').mockReturnValue(id);
-		jest.spyOn(PositionService, 'getRandomPosition').mockReturnValueOnce(x)
-			.mockReturnValueOnce(y);
 
-		const result = createRectangle(config);
+		const result = createRectangle(state, config);
 
 		expect(random.rndString).toHaveBeenCalledWith(idLength);
-		expect(PositionService.getRandomPosition).toHaveBeenCalledWith(width);
-		expect(PositionService.getRandomPosition).toHaveBeenCalledWith(height);
 		expect(result).toMatchObject(expected);
 	});
 
@@ -48,7 +46,8 @@ describe('RectangleManager', () => {
 		const result = setRectangle({ state, config });
 
 		expect(result).toEqual([...state.rectangles, returnValue]);
-		expect(RectangleManager.createRectangle).toHaveBeenCalledWith(config);
+		expect(RectangleManager.createRectangle)
+			.toHaveBeenCalledWith(state, config);
 	});
 
 	test('detectCollision', () => {

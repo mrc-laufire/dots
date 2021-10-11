@@ -1,17 +1,17 @@
+
 import { rndString } from '@laufire/utils/random';
-import PositionService from './positionService';
 
 const RectangleManager = {
-	createRectangle: (config) => ({
+	createRectangle: (state, config) => ({
 		id: rndString(config.idLength),
-		x: PositionService.getRandomPosition(config.width),
-		y: PositionService.getRandomPosition(config.height),
+		x: state.position.x,
+		y: state.position.y,
 		width: config.width,
 		height: config.height,
 	}),
 
 	setRectangle: ({ state, config }) => [...state.rectangles, RectangleManager
-		.createRectangle(config)],
+		.createRectangle(state, config)],
 
 	detectCollision: (context, object) =>
 		RectangleManager.isOverLapping(context, object),
