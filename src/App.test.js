@@ -1,8 +1,10 @@
+/* eslint-disable id-match */
 import { render, fireEvent } from '@testing-library/react';
 import { React } from 'react';
 import App from './App';
 import * as Rectangle from './components/rectangle';
 import { range } from '@laufire/utils/collection';
+import { rndBetween } from '@laufire/utils/random';
 
 describe('App', () => {
 	const rectangles = range().map((dummy, id) => ({
@@ -16,6 +18,7 @@ describe('App', () => {
 		},
 		actions: {
 			setRectangle: jest.fn(),
+			setPosition: jest.fn(),
 		},
 	};
 
@@ -36,13 +39,19 @@ describe('App', () => {
 		});
 	});
 
-	test('onClick fireEvent', () => {
+	test('onClick and onMouseUp fireEvent', () => {
 		jest.spyOn(context.actions, 'setRectangle').mockReturnValue();
+		jest.spyOn(context.actions, 'setPosition').mockReturnValue();
 
+		const clientX = rndBetween();
+		const clientY = rndBetween();
 		const component = render(App(context)).getByRole('App');
 
 		fireEvent.click(component);
+		fireEvent.mouseUp(component, { clientX, clientY });
 
+		expect(context.actions.setPosition)
+			.toHaveBeenCalledWith({ clientX, clientY });
 		expect(context.actions.setRectangle).toHaveBeenCalledWith();
 	});
 });
