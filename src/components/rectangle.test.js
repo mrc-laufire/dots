@@ -15,8 +15,8 @@ describe('Rectangle', () => {
 		expect(component).toBeInTheDocument();
 		expect(component).toHaveClass('rectangle');
 		expect(component).toHaveStyle({
-			left: `${ data.y }%`,
-			top: `${ data.x }%`,
+			left: `${ data.x }%`,
+			top: `${ data.y }%`,
 			width: `${ data.width }vw`,
 			height: `${ data.height }vw`,
 		});

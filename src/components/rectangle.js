@@ -6,8 +6,8 @@ const Rectangle = (context) => {
 	const isCollided = RectangleManager.detectCollision(context);
 	const color = isCollided ? 'green' : 'red';
 	const getStyle = {
-		left: `${ y }%`,
-		top: `${ x }%`,
+		left: `${ x }%`,
+		top: `${ y }%`,
 		width: `${ width }vw`,
 		height: `${ height }vw`,
 		background: color,
