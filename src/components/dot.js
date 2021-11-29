@@ -5,7 +5,7 @@ const Dot = (context) => {
 	const { data: { x, y, color }} = context;
 	const getStyle = {
 		left: `${ x }vw`,
-		bottom: `${ y }vh`,
+		bottom: `${ y }vw`,
 		background: color,
 	};
 
