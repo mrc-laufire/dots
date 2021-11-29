@@ -4,10 +4,11 @@ const config = {
 	width: 50,
 	height: 50,
 	radius: 10,
-	minCount: 6,
-	maxCount: 15,
+	minCount: 500,
+	maxCount: 1000,
 	screenStartPos: 10,
 	screenEndPos: 90,
+	variance: 0.2,
 };
 
 export default config;
