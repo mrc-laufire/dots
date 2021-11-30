@@ -14,10 +14,11 @@ const dotManager = {
 
 		const dots = count.map(() => {
 			const angle = rndBetween(0, 359) * Math.PI / 180;
+			const distance = rndBetween(0, radius);
 
 			return {
-				x: xPos + (radius * Math.sin(angle)),
-				y: yPos + (radius * Math.cos(angle)),
+				x: xPos + (distance * Math.sin(angle)),
+				y: yPos + (distance * Math.cos(angle)),
 				color: color,
 			};
 		});

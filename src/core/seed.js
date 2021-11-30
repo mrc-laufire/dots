@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { rndBetween } from '@laufire/utils/random';
 import dotManager from '../services/dotManager';
 import config from './config';
@@ -16,16 +15,16 @@ const seed = {
 		...getDots({
 			config: config,
 			data: {
-				xPos: 90,
-				yPos: 90,
+				xPos: rndBetween(screenStartPos, screenEndPos),
+				yPos: rndBetween(screenStartPos, screenEndPos),
 				color: 'red',
 			},
 		}),
 		...getDots({
 			config: config,
 			data: {
-				xPos: 10,
-				yPos: 10,
+				xPos: rndBetween(screenStartPos, screenEndPos),
+				yPos: rndBetween(screenStartPos, screenEndPos),
 				color: 'green',
 			},
 		}),
