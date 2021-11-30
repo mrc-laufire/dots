@@ -12,11 +12,16 @@ const dotManager = {
 		const variation = getVariance(variance);
 		const count = range(minCount * variation, maxCount * variation);
 
-		const dots = count.map(() => ({
-			x: rndBetween(xPos - radius, xPos + radius),
-			y: rndBetween(yPos - radius, yPos + radius),
-			color: color,
-		}));
+		const dots = count.map(() => {
+			const angle = rndBetween(0, 359) * Math.PI / 180;
+			const distance = rndBetween(xPos - radius, xPos + radius);
+
+			return {
+				x: xPos + (distance * Math.sin(angle)),
+				y: yPos + (distance * Math.cos(angle)),
+				color: color,
+			};
+		});
 
 		return dots;
 	},
