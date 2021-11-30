@@ -3,16 +3,15 @@
 }
 .App {
 	text-align: center;
-	width: 100vw;
-	height: 100vw;
+	width: 100vmin;
+	height: 100vmin;
 	background-color: lightgrey;
 	bottom: 0vw;
 	left: 0vw;
+	position: absolute;
 
 	.dot {
 		position: absolute;
-		height: 1vh;
-		width: 1vh;
 		border-radius: 50%;
 	}
 }

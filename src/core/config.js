@@ -9,6 +9,7 @@ const config = {
 	screenStartPos: 10,
 	screenEndPos: 90,
 	variance: 0.2,
+	size: 1,
 };
 
 export default config;

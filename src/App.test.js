@@ -9,6 +9,9 @@ describe('App', () => {
 			state: {
 				dots: range(),
 			},
+			config: {
+				size: 1,
+			},
 		};
 		const { getByRole } = render(App(context));
 		const component = getByRole('App');

@@ -1,12 +1,15 @@
+/* eslint-disable no-magic-numbers */
 import { rndString } from '@laufire/utils/random';
 import { React } from 'react';
 
 const Dot = (context) => {
-	const { data: { x, y, color }} = context;
+	const { data: { x, y, color }, config: { size }} = context;
 	const getStyle = {
-		left: `${ x }vw`,
-		bottom: `${ y }vw`,
+		left: `${ x - (size / 2) }%`,
+		bottom: `${ y - (size / 2) }%`,
 		background: color,
+		height: `${ size }%`,
+		width: `${ size }%`,
 	};
 
 	return (
