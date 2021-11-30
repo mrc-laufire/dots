@@ -7,12 +7,12 @@ const dotManager = {
 	getDots: (context) => {
 		const { config, data } = context;
 		const { xPos, yPos, color } = data;
-		const { radius, minCount, maxCount, variance } = config;
+		const { radius: configRadius, count, variance } = config;
 		const { getVariance } = helpers;
-		const variation = getVariance(variance);
-		const count = range(minCount * variation, maxCount * variation);
+		const counts = range(1, count * getVariance(variance.count));
+		const radius = configRadius * getVariance(variance.radius);
 
-		const dots = count.map(() => {
+		const dots = counts.map(() => {
 			const angle = rndBetween(0, 359) * Math.PI / 180;
 			const distance = rndBetween(0, radius);
 
